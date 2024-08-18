@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Installing Builder Package
 RUN apt update && \
-    apt install -y curl zip unzip tar build-essential pkg-config wget
+    apt install -y build-essential pkg-config wget curl zip unzip tar cmake
 
 # Installing vcpkg
 RUN wget -qO vcpkg.tar.gz https://github.com/microsoft/vcpkg/archive/master.tar.gz && \

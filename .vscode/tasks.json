@@ -1,0 +1,38 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "cmake:init",
+            "type": "shell",
+            "command": "podman",
+            "args": [
+                "run", "--rm", "-it", "-v", "./:/gibbon", "gibbon-container",
+                "cmake", "--no-warn-unused-cli", "-S.", "-B./build", "-G", "\"Unix Makefiles\""
+            ],
+        },
+        {
+            "label": "cpp:build",
+            "type": "shell",
+            "command": "podman",
+            "args": [
+                "run", "--rm", "-it", "-v", "./:/gibbon", "gibbon-container",
+                "cmake", "--build", "./build", "--", "-j3"
+            ]
+        },
+        {
+            "label": "cpp:run",
+            "type": "shell",
+            "dependsOn": [
+                "cpp:build"
+            ],
+            "command": "./bin/gibbon",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            }
+        },
+    ]
+}
