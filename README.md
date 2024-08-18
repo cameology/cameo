@@ -1,5 +1,8 @@
 
 <h1 align="center">
+  <br />
+    <img src="docs/assets/gibbon.png" alt="gibbon-img" />
+  <br />
   Gibbon Language
   <br />
 </h1>
