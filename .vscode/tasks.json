@@ -7,7 +7,7 @@
             "command": "podman",
             "args": [
                 "run", "--rm", "-it", "-v", "./:/gibbon", "gibbon-container",
-                "cmake", "--no-warn-unused-cli", "-S.", "-B./build", "-G", "\"Unix Makefiles\""
+                "cmake", "--no-warn-unused-cli", "-S.", "-B./target/cmake", "-G", "\"Unix Makefiles\""
             ],
         },
         {
@@ -16,7 +16,7 @@
             "command": "podman",
             "args": [
                 "run", "--rm", "-it", "-v", "./:/gibbon", "gibbon-container",
-                "cmake", "--build", "./build", "--", "-j3"
+                "cmake", "--build", "./target/cmake", "--", "-j3"
             ]
         },
         {
