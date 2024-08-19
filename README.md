@@ -9,7 +9,7 @@
 <h4 align="center">Yet another programming language for all ape species</h4>
 
 ## Motivation
-Syntatic sugar for cpp, a package manager, project structures, memory safety.
+Syntatic sugar for cpp, a package manager, project structures, memory safety, builtin memory test.
 In hope to help all apes out there. Ape together strong!
 
 ## Features
@@ -17,6 +17,7 @@ In hope to help all apes out there. Ape together strong!
 - **Package Manager**: Make life easier with package manager, maybe similary to npm or pip.
 - **Project Structure**: A standarize project structure. Ape hate linking.
 - **Memory Safety**: Borrowing how rust implement memory safety.
+- **Unit Test**: A built in unit test.
 
 ## Development
 
