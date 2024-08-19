@@ -8,6 +8,16 @@
 
 <h4 align="center">Yet another programming language for all ape species</h4>
 
+## Motivation
+Syntatic sugar for cpp, a package manager, project structures, memory safety.
+In hope to help all apes out there. Ape together strong!
+
+## Features
+- **Syntatic Syntax**: Write C++ with the familiarity of TypeScript's syntax.
+- **Package Manager**: Make life easier with package manager, maybe similary to npm or pip.
+- **Project Structure**: A standarize project structure. Ape hate linking.
+- **Memory Safety**: Borrowing how rust implement memory safety.
+
 ## Development
 
 
