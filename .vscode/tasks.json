@@ -25,7 +25,7 @@
             "dependsOn": [
                 "cpp:build"
             ],
-            "command": "./bin/gibbon",
+            "command": "./target/bin/gibbon",
             "presentation": {
                 "echo": true,
                 "reveal": "always",
