@@ -8,10 +8,5 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt update && \
     apt install -y build-essential pkg-config wget curl zip unzip tar cmake
 
-# Installing vcpkg
-RUN wget -qO vcpkg.tar.gz https://github.com/microsoft/vcpkg/archive/master.tar.gz && \
-    mkdir /opt/vcpkg && \
-    tar xf vcpkg.tar.gz --strip-components=1 -C /opt/vcpkg && \
-    /opt/vcpkg/bootstrap-vcpkg.sh && \
-    ln -s /opt/vcpkg/vcpkg /usr/local/bin/vcpkg && \
-    vcpkg version
+# Cloning GTest
+RUN git clone https://github.com/google/googletest.git kernels/libs/googletest
