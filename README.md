@@ -33,5 +33,5 @@ docker build -t gibbon-container -f docker/gibbon-container .
 ```
 
 ```sh
-docker run --rm -it -v ./src:/gibbon gibbon-container /bin/bash
+docker run --rm -it -v ./:/gibbon gibbon-container /bin/bash
 ```
