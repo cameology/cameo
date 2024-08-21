@@ -8,5 +8,10 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt update && \
     apt install -y build-essential pkg-config wget curl zip unzip tar cmake git
 
-# Cloning GTest
-RUN git clone https://github.com/google/googletest.git kernels/libs/googletest
+# Cloning GTest v1.15.2
+RUN git clone https://github.com/google/googletest.git --depth 1 --branch v1.15.2 /temp/googletest && cd /temp/googletest && \
+    mkdir build && cd build && \
+    cmake .. && make && \
+    cp -r lib/ /usr/lib/googletest && \
+    cp -r googletest/include/gtest/ /usr/include/ && \
+    cp -r googletest/include/gmock/ /usr/include/ 

@@ -9,4 +9,3 @@ set(CMAKE_BUILD_TYPE "Release")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/target/bin)
 
 add_subdirectory(src)
-add_subdirectory(kernels/libs/googletest)
