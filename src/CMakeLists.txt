@@ -9,6 +9,10 @@ target_include_directories(
     gibbon_test PRIVATE ${PROJECT_SOURCE_DIR}/kernels/includes
 )
 
+target_include_directories(
+    gibbon_test PRIVATE ${MAIN}/kernels
+)
+
 # Test Suites
 enable_testing()
 set(GoogleTest ${PROJECT_SOURCE_DIR}/kernels/libs/googletest)

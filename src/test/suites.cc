@@ -1,7 +1,8 @@
 #include <gtest/gtest.h>
 
+#include <constant.h>
 
-TEST(HelloTest, BasicAssertions) {
-    EXPECT_STRNE("hello", "world");
-    EXPECT_EQ(7 * 6, 42);
+
+TEST(Token, TokenAssertion) {
+    EXPECT_EQ(Token::str(Token::Keyword::If), "If");
 }

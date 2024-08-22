@@ -1,6 +1,10 @@
 #ifndef CONSTANT_H
 #define CONSTANT_H
 
+#include <unordered_map>
+#include <string>
+
+
 namespace Token {
     enum Keyword {
         // branch
@@ -76,6 +80,25 @@ namespace Token {
 
         // Special
         Assignment,             // =
+    };
+
+    template <typename T> std::string str(T token) {
+        switch(token) {
+            case Keyword::If:
+                return "If";
+            case Keyword::Else:
+                return "Else";
+            case Keyword::Switch:
+                return "Switch";
+            case Keyword::Case:
+                return "Case";
+            case Keyword::Default:
+                return "Default";
+            case Keyword::Break:
+                return "Break";
+            default:
+                return "";
+        }
     };
 };
 
