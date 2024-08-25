@@ -4,14 +4,13 @@ set(TEST ${CMAKE_CURRENT_SOURCE_DIR}/test)
 
 add_executable(gibbon_test ${TEST}/suites.cc)
 
-# include dirs
-target_include_directories(
-    gibbon_test PRIVATE ${PROJECT_SOURCE_DIR}/kernels/includes
-)
 
-target_include_directories(
-    gibbon_test PRIVATE ${MAIN}/kernels
-)
+# include dirs
+target_include_directories(gibbon_test PRIVATE ${PROJECT_SOURCE_DIR}/kernels/includes)
+target_include_directories(gibbon_test PRIVATE ${MAIN})
+
+add_subdirectory(${MAIN}/frontend)
+
 
 # Test Suites
 enable_testing()
@@ -25,4 +24,6 @@ target_link_libraries(gibbon_test PRIVATE
     ${GTest}
     ${GTestMain}
     ${GMock}
+
+    frontend
 )
