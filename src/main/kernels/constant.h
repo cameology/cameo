@@ -42,6 +42,12 @@ namespace Token {
     };
 
     enum Special {
+        Variable,
+        Value,
+        ReturnValue,
+        FunctionName,
+        Param,
+        ClassName,
         Brackets,               // []
         Parentheses,            // ()
         Braces,                 // {}

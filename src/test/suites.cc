@@ -1,7 +1,10 @@
 #include <string>
+#include <vector>
+
 #include <gtest/gtest.h>
 
 #include <kernels/constant.h>
+#include <kernels/type.h>
 #include <frontend/Lexer.h>
 
 
@@ -9,6 +12,8 @@
 TEST(TokenAssertion, IntAssertionAsInt) {
     const std::string line  = "int a = 1";
     Lexer lexer;
+
+    std::vector<Type::LexerDetail> detail = lexer.serialize(line);
 }
 
 TEST(TokenAssertion, IntAssertionAsFloat) {
