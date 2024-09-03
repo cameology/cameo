@@ -9,7 +9,7 @@
 
 
 
-TEST(TokenAssertion, IntAssertionAsInt) {
+TEST(TokenAssertion, IntAssertion) {
     Lexer lexer;
     std::string line    = "int a = 1;";
     auto node           = lexer.serialize(line);
@@ -19,9 +19,17 @@ TEST(TokenAssertion, IntAssertionAsInt) {
     EXPECT_EQ(node.id.name, "a");
     EXPECT_EQ(node.value.raw, "1");
 
+    // Put float as integer
+    line = "int a = 1.5;";
+    EXPECT_THROW(lexer.serialize(line), Exception::InvalidDatatype);
+
     // Put string as integer
-    line = "int a = 1";
-    EXPECT_THROW(lexer.serialize(line), Exception::UnexpectedToken);
+    line = "int a = \"stringg\";";
+    EXPECT_THROW(lexer.serialize(line), Exception::InvalidDatatype);
+
+    // Put boolean as integer
+    line = "int a = true;";
+    EXPECT_THROW(lexer.serialize(line), Exception::InvalidDatatype);
 }
 
 TEST(TokenAssertion, FloatAssertion) {
@@ -55,4 +63,11 @@ TEST(TokenAssertion, StringAssertion) {
     EXPECT_EQ(node.value.type, "string");
     EXPECT_EQ(node.id.name, "a");
     EXPECT_EQ(node.value.raw, "\"kata kata\"");
+}
+
+TEST(TokenAssertion, UnexpectedToken) {
+    const std::string line  = "string a = \"kata kata\"";
+
+    Lexer lexer;
+    EXPECT_THROW(lexer.serialize(line), Exception::UnexpectedToken);
 }

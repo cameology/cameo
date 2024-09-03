@@ -22,6 +22,11 @@ namespace Exception {
         public:
             UnexpectedToken();
     };
+
+    class InvalidDatatype : public Exception {
+        public:
+            InvalidDatatype();
+    };
 };
 
 #endif

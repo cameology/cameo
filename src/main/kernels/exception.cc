@@ -15,4 +15,8 @@ namespace Exception {
     UnexpectedToken::UnexpectedToken() {
         this->message = "unexpected token";
     };
+
+    InvalidDatatype::InvalidDatatype() {
+        this->message = "Invalid Datatype";
+    };
 };

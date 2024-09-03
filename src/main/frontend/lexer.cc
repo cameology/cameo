@@ -30,6 +30,15 @@ AbstractSyntaxTree::VariableNode Lexer::variableProcessor(std::string line) {
         auto datatype   = matches[1].str();
         auto value      = matches[3].str();
 
+        // Integer Checker
+        if (datatype == "int") {
+            std::regex intPattern("^-?\\d+$");
+
+            if (!std::regex_match(value, intPattern)) {
+                throw Exception::InvalidDatatype();
+            }
+        }
+
         return AbstractSyntaxTree::VariableNode(0, 0,
             AbstractSyntaxTree::Identifier(matches[2].str()),
             AbstractSyntaxTree::Value(datatype, value)
