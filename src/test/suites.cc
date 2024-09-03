@@ -4,19 +4,24 @@
 #include <gtest/gtest.h>
 
 #include <kernels/constant.h>
+#include <kernels/exception.cc>
 #include <frontend/lexer.h>
 
 
 
 TEST(TokenAssertion, IntAssertionAsInt) {
-    const std::string line  = "int a = 1;";
-
     Lexer lexer;
-    auto node = lexer.serialize(line);
+    std::string line    = "int a = 1;";
+    auto node           = lexer.serialize(line);
 
+    // Positive case
     EXPECT_EQ(node.value.type, "int");
     EXPECT_EQ(node.id.name, "a");
     EXPECT_EQ(node.value.raw, "1");
+
+    // Put string as integer
+    line = "int a = 1";
+    EXPECT_THROW(lexer.serialize(line), Exception::UnexpectedToken);
 }
 
 TEST(TokenAssertion, FloatAssertion) {

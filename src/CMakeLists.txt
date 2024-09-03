@@ -10,6 +10,7 @@ target_include_directories(gibbon_test PRIVATE ${PROJECT_SOURCE_DIR}/kernels/inc
 target_include_directories(gibbon_test PRIVATE ${MAIN})
 
 add_subdirectory(${MAIN}/frontend)
+add_subdirectory(${MAIN}/kernels)
 
 
 # Test Suites
@@ -26,4 +27,5 @@ target_link_libraries(gibbon_test PRIVATE
     ${GMock}
 
     frontend
+    kernels
 )

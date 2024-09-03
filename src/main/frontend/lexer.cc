@@ -6,6 +6,7 @@
 #include <regex>
 
 #include <kernels/constant.h>
+#include <kernels/exception.h>
 #include <frontend/ast.h>
 
 #include <stdexcept>
@@ -26,13 +27,16 @@ AbstractSyntaxTree::VariableNode Lexer::variableProcessor(std::string line) {
 
     // Variable Checker
     if (std::regex_search(line, matches, query.at(0))) {
+        auto datatype   = matches[1].str();
+        auto value      = matches[3].str();
+
         return AbstractSyntaxTree::VariableNode(0, 0,
             AbstractSyntaxTree::Identifier(matches[2].str()),
-            AbstractSyntaxTree::Value(matches[1].str(), matches[3].str())
+            AbstractSyntaxTree::Value(datatype, value)
         );
     }
 
-    throw std::runtime_error("Unexpected Token");
+    throw Exception::UnexpectedToken();
 }
 
 AbstractSyntaxTree::VariableNode Lexer::serialize(std::string line) {
