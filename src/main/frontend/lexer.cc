@@ -35,6 +35,11 @@ AbstractSyntaxTree::VariableNode Lexer::variableProcessor(std::string line) {
             throw Exception::InvalidDatatype();
         }
 
+        // Float Checker
+        if ((datatype == "float") and !(std::regex_match(value, std::regex("^[+-]?\\d*\\.\\d+$")))) {
+            throw Exception::InvalidDatatype();
+        }
+
         // String Checker
         if ((datatype == "string") and !(std::regex_match(value, std::regex("\"([^\"]*)\"")))) {
             throw Exception::InvalidDatatype();

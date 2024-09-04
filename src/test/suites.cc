@@ -33,14 +33,30 @@ TEST(TokenAssertion, IntAssertion) {
 }
 
 TEST(TokenAssertion, FloatAssertion) {
-    const std::string line  = "float fl = 1.0;";
-
     Lexer lexer;
+    std::string line  = "float fl = 1.0;";
     auto node = lexer.serialize(line);
 
+    // Positive case
     EXPECT_EQ(node.value.type, "float");
     EXPECT_EQ(node.id.name, "fl");
     EXPECT_EQ(node.value.raw, "1.0");
+
+    // Put integer as float
+    line = "float a = 1;";
+    EXPECT_THROW(lexer.serialize(line), Exception::InvalidDatatype);
+
+    // Put string as float
+    line = "float a = \"stringg\";";
+    EXPECT_THROW(lexer.serialize(line), Exception::InvalidDatatype);
+
+    // Put boolean as float
+    line = "float a = true;";
+    EXPECT_THROW(lexer.serialize(line), Exception::InvalidDatatype);
+
+    // Invalid float format
+    line = "float a = 1.2.32;";
+    EXPECT_THROW(lexer.serialize(line), Exception::UnexpectedToken);
 }
 
 TEST(TokenAssertion, BooleanAssertion) {
@@ -88,7 +104,7 @@ TEST(TokenAssertion, StringAssertion) {
     line = "string a = true;";
     EXPECT_THROW(lexer.serialize(line), Exception::InvalidDatatype);
 
-    // Put string as without quotes
+    // Invalid string format
     line = "string a = stringg sdfsdaf;";
     EXPECT_THROW(lexer.serialize(line), Exception::UnexpectedToken);
 }
