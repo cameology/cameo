@@ -44,25 +44,53 @@ TEST(TokenAssertion, FloatAssertion) {
 }
 
 TEST(TokenAssertion, BooleanAssertion) {
-    const std::string line  = "boolean bl = true;";
-
     Lexer lexer;
+    std::string line  = "boolean bl = true;";
     auto node = lexer.serialize(line);
 
+    // Positive case
     EXPECT_EQ(node.value.type, "boolean");
     EXPECT_EQ(node.id.name, "bl");
     EXPECT_EQ(node.value.raw, "true");
+
+    // Put integer as boolean
+    line = "boolean a = 1;";
+    EXPECT_THROW(lexer.serialize(line), Exception::InvalidDatatype);
+
+    // Put float as boolean
+    line = "boolean a = 1.5;";
+    EXPECT_THROW(lexer.serialize(line), Exception::InvalidDatatype);
+
+    // Put string as boolean
+    line = "boolean a = \"true\";";
+    EXPECT_THROW(lexer.serialize(line), Exception::InvalidDatatype);
 }
 
 TEST(TokenAssertion, StringAssertion) {
-    const std::string line  = "string a = \"kata kata\";";
-
     Lexer lexer;
-    auto node = lexer.serialize(line);
+    std::string line    = "string a = \"kata kata\";";
+    auto node           = lexer.serialize(line);
 
+    // Positive case
     EXPECT_EQ(node.value.type, "string");
     EXPECT_EQ(node.id.name, "a");
     EXPECT_EQ(node.value.raw, "\"kata kata\"");
+
+    // Put integer as string
+    line = "string a = 1;";
+    EXPECT_THROW(lexer.serialize(line), Exception::InvalidDatatype);
+    
+    // Put float as string
+    line = "string a = 1.3;";
+    EXPECT_THROW(lexer.serialize(line), Exception::InvalidDatatype);
+
+    // Put boolean as string
+    line = "string a = true;";
+    EXPECT_THROW(lexer.serialize(line), Exception::InvalidDatatype);
+
+    // Put string as without quotes
+    line = "string a = stringg sdfsdaf;";
+    EXPECT_THROW(lexer.serialize(line), Exception::UnexpectedToken);
 }
 
 TEST(TokenAssertion, UnexpectedToken) {

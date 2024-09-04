@@ -31,12 +31,18 @@ AbstractSyntaxTree::VariableNode Lexer::variableProcessor(std::string line) {
         auto value      = matches[3].str();
 
         // Integer Checker
-        if (datatype == "int") {
-            std::regex intPattern("^-?\\d+$");
+        if ((datatype == "int") and !(std::regex_match(value, std::regex("^-?\\d+$")))) {
+            throw Exception::InvalidDatatype();
+        }
 
-            if (!std::regex_match(value, intPattern)) {
-                throw Exception::InvalidDatatype();
-            }
+        // String Checker
+        if ((datatype == "string") and !(std::regex_match(value, std::regex("\"([^\"]*)\"")))) {
+            throw Exception::InvalidDatatype();
+        }
+
+        // Boolean Checker
+        if ((datatype == "boolean") and !(std::regex_match(value, std::regex("true|false")))) {
+            throw Exception::InvalidDatatype();
         }
 
         return AbstractSyntaxTree::VariableNode(0, 0,
